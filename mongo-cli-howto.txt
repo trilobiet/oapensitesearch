@@ -1,0 +1,39 @@
+ 
+Connect to mongodb and query a collection
+=========================================
+> mongo localhost:27017
+
+> show dbs
+...
+...
+strapi
+...
+
+> use strapi
+switched to db strapi
+
+Show all records from strapi.article:
+example db.article.find()
+
+
+Create an index on a collection
+=========================================
+> db.article.createIndex({"title":"text","content":"text","summary":"text","tags":"text"})
+
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+
+
+Perform a search on the indexed collection
+=========================================
+
+db.article.find(
+    { $text: { $search: "Deposit Service" } },
+    { score: { $meta: "textScore" } }
+).sort(
+    { score: { $meta: "textScore" } }
+)
