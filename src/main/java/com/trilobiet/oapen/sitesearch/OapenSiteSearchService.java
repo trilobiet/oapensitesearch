@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class OapenSiteSearchService implements SiteSearchService {
 	
+	// TODO textExcerpt creation to separate class (maybe use JSoup)
+	
 	public final SiteSearchGateway gateway;
 	public final ArticleToResultMapper mapper = new ArticleToResultMapper();
 
@@ -40,9 +42,10 @@ public class OapenSiteSearchService implements SiteSearchService {
 	private String textExcerpt(String text, String searchterm) {
 		
 		String cleanText = text
+			.replaceAll( "<[^>]*>", "") // remove HTML (TODO test it)
 			.replaceAll( "\\s+", " " )   // remove whitespace
 			.replaceAll( "]\\([^)]*\\)", "") // remove link urls [link description](https://the.url)
-			.replaceAll( "[#\\*\\[\\]]", "" )
+			.replaceAll( "[#\\*\\[\\]]", "" ) // remove markdown markup
 			;  
 		
 		int pos = cleanText.toLowerCase().indexOf(searchterm.toLowerCase());
@@ -51,7 +54,11 @@ public class OapenSiteSearchService implements SiteSearchService {
 		int start = Math.max( pos - 20, 0 );
 		int end = Math.min( start + len, cleanText.length() );
 		
-		return cleanText.substring(start, end) + " … ";
+		cleanText = cleanText.substring( start, end );
+		cleanText = "…" + cleanText
+			.substring( cleanText.indexOf(" "), cleanText.lastIndexOf(" ") ) + " … "; // remove first and last word fragments 
+
+		return cleanText;
 	}
 
 	

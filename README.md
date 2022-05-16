@@ -10,6 +10,10 @@
     
 ## Before you can run a full text search on mongodb you must create an index:
 
-    db.article.createIndex({"title":"text","content":"text","summary":"text","tags":"text"})
+	db.article.createIndex({"field_1":"text", ... , "field_n":"text"})
+	
+For example:
+	
+    db.article.createIndex({"title":"text","content":"text","summary":"text","tags":"text","...":"text"})
     
-    
+     

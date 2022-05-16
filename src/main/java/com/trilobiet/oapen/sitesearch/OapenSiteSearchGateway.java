@@ -91,7 +91,6 @@ class OapenSiteSearchGateway implements SiteSearchGateway {
 					}
                 }
             }
-            
         }		
 		
         return results;
@@ -109,7 +108,11 @@ class OapenSiteSearchGateway implements SiteSearchGateway {
 	private MongoCursor<Document> findInArticles(String term, MongoCollection<Document> articles) {
 
 		Document qtext = new Document("$text",
-				new Document("$search", term).append("$caseSensitive", false).append("$diacriticSensitive", false));
+			new Document("$search", term)
+			.append("$caseSensitive", false)
+			.append("$diacriticSensitive", false)
+			.append("$language", "en")
+		);
 		Document qscore = new Document("score", new Document("$meta", "textScore"));
 
 		// return documents.find(qtext).projection(qscore).iterator();
