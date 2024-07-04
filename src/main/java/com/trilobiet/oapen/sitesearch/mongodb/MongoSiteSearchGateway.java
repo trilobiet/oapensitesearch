@@ -1,4 +1,4 @@
-package com.trilobiet.oapen.sitesearch;
+package com.trilobiet.oapen.sitesearch.mongodb;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +20,9 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.trilobiet.oapen.sitesearch.SiteSearchException;
 
-class OapenSiteSearchGateway implements SiteSearchGateway {
+class MongoSiteSearchGateway {
 	
 	public final String URL;
 	public final String DATABASE = "strapi";
@@ -32,7 +33,7 @@ class OapenSiteSearchGateway implements SiteSearchGateway {
 		mongoLogger.setLevel(Level.SEVERE);
 	}
 
-	public OapenSiteSearchGateway(String url) {
+	public MongoSiteSearchGateway(String url) {
 		this.URL = url;
 	}
 	
@@ -63,7 +64,6 @@ class OapenSiteSearchGateway implements SiteSearchGateway {
 	}
 	
 
-	@Override
 	public List<Article> search(String term) {
 		
 		List<Article> results = new ArrayList<>();
@@ -144,7 +144,6 @@ class OapenSiteSearchGateway implements SiteSearchGateway {
 	}
 
 	
-	@Override
 	public String createIndex(List<String> fields) throws SiteSearchException {
 		
 		String name = "";

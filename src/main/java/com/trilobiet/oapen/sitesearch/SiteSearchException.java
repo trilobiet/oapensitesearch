@@ -6,10 +6,10 @@ import lombok.Getter;
 public class SiteSearchException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
-	private final String json;
+	private final String message;
 	
-	public SiteSearchException(String json) {
-		this.json = json;
+	public SiteSearchException(String msg) {
+		this.message = msg;
 	}
 
 }

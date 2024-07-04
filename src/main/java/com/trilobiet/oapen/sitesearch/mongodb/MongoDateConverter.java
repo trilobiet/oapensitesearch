@@ -1,4 +1,4 @@
-package com.trilobiet.oapen.sitesearch;
+package com.trilobiet.oapen.sitesearch.mongodb;
 
 import java.io.IOException;
 import java.text.ParseException;

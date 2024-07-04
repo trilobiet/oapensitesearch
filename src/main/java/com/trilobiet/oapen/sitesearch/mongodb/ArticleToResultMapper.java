@@ -1,8 +1,10 @@
-package com.trilobiet.oapen.sitesearch;
+package com.trilobiet.oapen.sitesearch.mongodb;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import com.trilobiet.oapen.sitesearch.SiteSearchResult;
 
 class ArticleToResultMapper {
 	

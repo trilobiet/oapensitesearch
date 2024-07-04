@@ -1,0 +1,1 @@
+Run 'mvn clean install' to install in local maven repository 
