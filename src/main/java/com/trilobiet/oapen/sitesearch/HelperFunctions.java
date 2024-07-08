@@ -12,14 +12,17 @@ public final class HelperFunctions {
 			;  
 		
 		int pos = cleanText.toLowerCase().indexOf(searchterm.toLowerCase());
-		// System.out.println("POS -> " + searchterm + " = " + pos);
 		int len = 200;
 		int start = Math.max( pos - 20, 0 );
 		int end = Math.min( start + len, cleanText.length() );
 		
 		cleanText = cleanText.substring( start, end );
+		
+		int from = Math.max(cleanText.indexOf(" "), 0);
+		int to = Math.max(cleanText.lastIndexOf(" "), 0);
+		
 		cleanText = "…" + cleanText
-			.substring( cleanText.indexOf(" "), cleanText.lastIndexOf(" ") ) + " … "; // remove first and last word fragments 
+			.substring( from, to ) + " … "; // remove first and last word fragments
 
 		return cleanText;
 	}	

@@ -84,9 +84,9 @@ class MySQLSiteSearchGateway {
 					String articleSlug = rs.getString("articleSlug");
 					Date updatedAt = rs.getDate("updatedAt");
 					
-					String contentExcerpt = HelperFunctions.textExcerpt(content, term); 
-					
 					if (publish == true) {
+						
+						String contentExcerpt = HelperFunctions.textExcerpt(content, term);
 					
 						SiteSearchResult result = SiteSearchResult.builder()
 							.score(score)
